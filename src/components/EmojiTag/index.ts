@@ -1,0 +1,1 @@
+export { EmojiTag } from "./EmojiTag"

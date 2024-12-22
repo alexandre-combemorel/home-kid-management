@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scores",
+  "info": {
+    "singularName": "score",
+    "pluralName": "scores",
+    "displayName": "score",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "result": {
+      "type": "json"
+    },
+    "variation": {
+      "type": "integer"
+    },
+    "moment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::moment.moment"
+    }
+  }
+}
