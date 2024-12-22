@@ -1,10 +1,11 @@
-import { Alert, Loader, Separator, Stack, Text } from "@ultraviolet/ui"
+import { Alert, Loader, Stack, Text } from "@ultraviolet/ui"
 import { SelectableCardField, useForm } from "@ultraviolet/form"
 import { ImageTag } from "../../components/ImageTag"
 import { EmojiTag } from "../../components/EmojiTag"
 import styled from "@emotion/styled"
 import { useNavigate } from "@tanstack/react-router"
-import { useQueryMoments } from "../../queries"
+import { useQueryMoments, useQueryScore } from "../../queries"
+import { getStartDay, Time } from "../../helpers/time"
 
 const EmojiWrapper = styled.div`
   width: 100%;
@@ -24,6 +25,9 @@ export const Planning = () => {
   })
 
   const { isPending, data: moments, error } = useQueryMoments()
+  const dayStart = getStartDay()
+  const { data: scores } = useQueryScore({ startDate: dayStart })
+
   if (error) {
     return <Alert sentiment="danger">Something went wrong</Alert>
   }
@@ -35,38 +39,45 @@ export const Planning = () => {
       </Text>
 
       <Stack gap={3}>
-        <Stack alignItems="center">
-          <SelectableCardField
-            control={control}
-            label="Trouver le moment"
-            name="moment"
-            type="radio"
-            value="auto"
-          >
-            <EmojiWrapper>
-              <EmojiTag size="big">🔎</EmojiTag>
-            </EmojiWrapper>
-          </SelectableCardField>
-        </Stack>
-        <Separator />
-        <Stack direction="row" gap={2}>
+        <Stack direction="row" gap={2} alignItems="start">
           {isPending || !moments ? (
             <Loader />
           ) : (
-            moments.data.map((moment) => (
-              <SelectableCardField
-                control={control}
-                key={moment.documentId}
-                label={moment.label}
-                name="moment"
-                type="radio"
-                onChange={() => {
-                  navigate({ to: `/task/${moment.documentId}` })
-                }}
-              >
-                <ImageTag src={moment.img.url} />
-              </SelectableCardField>
-            ))
+            moments.data.map((moment) => {
+              const timeStart = new Time(moment.timeStart)
+              const timeEnd = new Time(moment.timeEnd)
+
+              return (
+                <Stack key={moment.documentId} gap={2}>
+                  <SelectableCardField
+                    control={control}
+                    label={
+                      <Text as="p" variant="bodyStronger">
+                        {moment.label}
+                      </Text>
+                    }
+                    name="moment"
+                    type="radio"
+                    onChange={() => {
+                      navigate({ to: `/task/${moment.documentId}` })
+                    }}
+                    disabled={scores?.data.some(
+                      (score) => score.moment.documentId === moment.documentId,
+                    )}
+                  >
+                    <Text as="p" variant="bodySmall">
+                      {timeStart.toStringHHMM()} à {timeEnd.toStringHHMM()}
+                    </Text>
+                    <ImageTag src={moment.img.url} />
+                  </SelectableCardField>
+                  {Time.isTimeCurrentlyHappening(timeStart, timeEnd) && (
+                    <EmojiWrapper>
+                      <EmojiTag size="medium">👆</EmojiTag>
+                    </EmojiWrapper>
+                  )}
+                </Stack>
+              )
+            })
           )}
         </Stack>
       </Stack>

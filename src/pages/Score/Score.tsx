@@ -3,13 +3,15 @@ import { useQueryScore } from "../../queries"
 import { getStartOfTheWeek } from "../../helpers/time"
 import { config } from "../../config"
 import { useMemo } from "react"
-import { Line, LineChart, ReferenceArea, XAxis, YAxis } from "recharts"
+import { CartesianGrid, Line, LineChart, ReferenceArea, XAxis, YAxis } from "recharts"
 import {
   MAPPING_DAY_OF_THE_WEEK_REVERSE,
   MAPPING_NUM_DAY_NAME_DAY_ORDERED,
 } from "../../constants/time"
+import { useTheme } from "@emotion/react"
 
 export const Score = () => {
+  const { colors } = useTheme()
   const weekStart = getStartOfTheWeek(new Date())
   const { data: scores } = useQueryScore({ startDate: weekStart })
   const calculatedScore = useMemo(
@@ -28,20 +30,22 @@ export const Score = () => {
         value: day.num === 5 ? config.STARTING_SCORE : undefined,
       }
     })
+    let scorePreviousDay = config.STARTING_SCORE
     return listOfScore.map((score, index) => {
       if (index === 0) return score
+      let foundData = false
+      const scoreForTheDay = scores?.data.reduce((acc, scoreItem) => {
+        const scoreDate = new Date(scoreItem.createdAt)
+        if (scoreDate.getDay() === MAPPING_DAY_OF_THE_WEEK_REVERSE[score.name]) {
+          foundData = true
+          return (acc ?? 0) + scoreItem.variation
+        }
+        return acc
+      }, scorePreviousDay)
+      scorePreviousDay = scoreForTheDay ?? 0
       return {
         name: score.name,
-        value: scores?.data.reduce(
-          (acc, scoreItem) => {
-            const scoreDate = new Date(scoreItem.createdAt)
-            if (scoreDate.getDay() === MAPPING_DAY_OF_THE_WEEK_REVERSE[score.name]) {
-              return (acc ?? 0) + scoreItem.variation
-            }
-            return acc
-          },
-          listOfScore[index - 1].value,
-        ),
+        value: foundData ? scoreForTheDay : undefined,
       }
     })
   }, [scores])
@@ -49,17 +53,24 @@ export const Score = () => {
   return (
     <Stack alignItems="center" gap={3}>
       <Text as="p" variant="headingLargeStrong">
-        Score actuel: {calculatedScore}
+        🏅 Score actuel: {calculatedScore}
       </Text>
       <LineChart width={700} height={500} data={scoresByDay}>
         <XAxis dataKey="name" />
         <YAxis domain={[0, 16]} />
+        <CartesianGrid
+          vertical={true}
+          horizontal={false}
+          strokeDasharray="3 3"
+          stroke={colors.neutral.backgroundStrongerHover}
+        />
 
         <ReferenceArea y1={13} y2={16} fill="#0017ff" fillOpacity={0.5} />
         <ReferenceArea y1={7} y2={13} fill="#00a104" fillOpacity={0.5} />
         <ReferenceArea y1={4} y2={7} fill="#fff224" fillOpacity={0.5} />
-        <ReferenceArea y1={0} y2={4} fill="#ff9418" fillOpacity={0.5} />
-        <Line type="monotone" dataKey="value" stroke="#ffffff" strokeWidth={4} />
+        <ReferenceArea y1={2} y2={4} fill="#ff9418" fillOpacity={0.5} />
+        <ReferenceArea y1={0} y2={2} fill="#ff0000" fillOpacity={0.5} />
+        <Line type="monotone" dataKey="value" stroke={colors.primary.text} strokeWidth={4} />
       </LineChart>
     </Stack>
   )

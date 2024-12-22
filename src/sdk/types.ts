@@ -23,6 +23,14 @@ export type Moment = {
   tasks: Task[]
 }
 
+export type Score = {
+  createdAt: Date
+  documentId: string
+  result: PayloadActions
+  variation: number
+  moment: Moment
+}
+
 export type Moments = Moment[]
 
 export type PayloadActions = {

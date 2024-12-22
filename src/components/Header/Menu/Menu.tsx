@@ -10,10 +10,6 @@ const ROUTES_MAP: {
     path: "/",
   },
   {
-    label: "✅ Tache",
-    path: "/task",
-  },
-  {
     label: "📌 Score",
     path: "/score",
   },

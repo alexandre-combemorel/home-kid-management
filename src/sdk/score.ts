@@ -1,5 +1,5 @@
 import { strapi } from "./base"
-import type { PayloadActions } from "./types"
+import type { PayloadActions, Score } from "./types"
 
 export type ScoreTypeInput = {
   result: PayloadActions
@@ -7,15 +7,8 @@ export type ScoreTypeInput = {
   variation: number
 }
 
-export type ScoreTypeResult = {
-  createdAt: Date
-  documentId: string
-  result: PayloadActions
-  variation: number
-}
-
 export const setScore = ({ momentDocumentId, result, variation }: ScoreTypeInput) => {
-  return strapi.create<ScoreTypeResult>("scores", {
+  return strapi.create<Score>("scores", {
     result,
     moment: momentDocumentId,
     variation,
@@ -23,11 +16,12 @@ export const setScore = ({ momentDocumentId, result, variation }: ScoreTypeInput
 }
 
 export const getScoresForTheWeek = ({ startDate }: { startDate: Date }) => {
-  return strapi.find<ScoreTypeResult[]>("scores", {
+  return strapi.find<Score[]>("scores", {
     filters: {
       createdAt: {
         $gt: startDate,
       },
     },
+    populate: ["moment"],
   })
 }

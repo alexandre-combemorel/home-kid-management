@@ -3,6 +3,7 @@ import type { Moment, Moments } from "./types"
 
 export const getMoments = () => {
   return strapi.find<Moments>("moments", {
+    sort: "timeStart:asc",
     populate: {
       img: {
         fields: "url",
