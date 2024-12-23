@@ -81,6 +81,7 @@ public/uploads/*
 # Strapi
 ############################
 
+.env.*
 .env
 license.txt
 exports
