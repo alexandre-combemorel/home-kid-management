@@ -1,3 +1,3 @@
 export const getImgUrl = (imgPath: string) => {
-  return `${import.meta.env.VITE_BACKEND_URL}${imgPath}`
+  return new URL(imgPath, import.meta.env.VITE_BACKEND_URL).href
 }

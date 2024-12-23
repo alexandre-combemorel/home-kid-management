@@ -8,7 +8,7 @@ export const getTimeFromHoursAndMinutes = (hours: number, minutes: number) => {
 // function returning the Date of start of the week, starting on friday lunch time
 export const getStartOfTheWeek = (date: Date) => {
   const day = date.getDay()
-  const diff = date.getDate() - day + (day === 0 ? -6 : 5) // adjust when day is sunday
+  const diff = date.getDate() - day + (day === 5 ? 0 : day === 6 ? -1 : -2) // adjust to go back to the last friday
   const friday = new Date(date.setDate(diff))
   friday.setHours(12, 0, 0, 0)
   return friday
