@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-front": "bun run ./scripts/deploy.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +26,7 @@
     "strapi-sdk-js": "^2.3.3"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.717.0",
     "@eslint/js": "^9.15.0",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
