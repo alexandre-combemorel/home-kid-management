@@ -39,7 +39,7 @@ export const Planning = () => {
       </Text>
 
       <Stack gap={3}>
-        <Stack direction="row" gap={2} alignItems="start">
+        <Stack direction="row" gap={2} alignItems="start" wrap justifyContent="center">
           {isPending || !moments ? (
             <Loader />
           ) : (

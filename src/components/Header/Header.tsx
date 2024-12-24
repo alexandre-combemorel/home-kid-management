@@ -5,7 +5,7 @@ import type { ThemeValue } from "../../providers/ThemeProvider/ThemeProvider"
 import { Menu } from "./Menu/Menu"
 
 const HeaderContainer = styled.header`
-  min-height: 60px; /* Safari joy... */
+  min-height: 60px;
 
   &[data-top-show-section='false'] {
     height: 0;
