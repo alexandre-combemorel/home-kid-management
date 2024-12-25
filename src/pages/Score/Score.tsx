@@ -42,6 +42,7 @@ export const Score = () => {
       return {
         name: day.name,
         value: day.num === 5 ? config.STARTING_SCORE : undefined,
+        order: day.order,
       }
     })
     let scorePreviousDay = config.STARTING_SCORE
@@ -57,12 +58,17 @@ export const Score = () => {
         return acc
       }, scorePreviousDay)
       scorePreviousDay = scoreForTheDay ?? 0
+      const isCurrentScoreBeforeToday =
+        score.order <
+        (MAPPING_NUM_DAY_NAME_DAY_ORDERED.find((day) => day.num === new Date().getDay())?.order ??
+          0)
       return {
         name: score.name,
-        value: foundData ? scoreForTheDay : undefined,
+        value: foundData || isCurrentScoreBeforeToday ? scoreForTheDay : undefined,
       }
     })
   }, [scores])
+  console.log("🚀 ~ scoresByDay ~ scoresByDay:", scoresByDay)
 
   return (
     <Stack alignItems="center" gap={3}>
