@@ -20,19 +20,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     env:
-      SCW_BUCKET_NAME: "home-kid-management"
       SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+      SCW_BUCKET_NAME: "home-kid-management"
+      SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
+      SCW_REGION: "fr-par"
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
+      - name: check file presence
+        run: ls -la
       - name: Deploy Staging
-        run: echo $SCW_ACCESS_KEY
+        run: bun run deploy
   deploy-production:
     if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
     runs-on: ubuntu-latest
     needs: [build]
     env:
+      SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+      SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       SCW_BUCKET_NAME: "home-kid-management"
+      SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
+      SCW_REGION: "fr-par"
     steps:
       - uses: actions/checkout@v4
