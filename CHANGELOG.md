@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- f574925: test
+- test
 
 ## 1.2.0
 
