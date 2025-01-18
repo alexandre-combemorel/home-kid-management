@@ -1,7 +1,7 @@
 {
   "name": "home-kid-management",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -26,6 +26,7 @@
     "strapi-sdk-js": "^2.3.3"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.11",
     "@aws-sdk/client-s3": "^3.717.0",
     "@eslint/js": "^9.15.0",
     "@types/react": "^19.0.2",

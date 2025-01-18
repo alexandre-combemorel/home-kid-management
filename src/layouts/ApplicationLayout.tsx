@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 
 const StyledMain = styled.main`
   width: 100%;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   position: relative;
