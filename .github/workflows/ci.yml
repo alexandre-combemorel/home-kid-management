@@ -18,7 +18,7 @@ jobs:
           bun run build
       - uses: actions/upload-artifact@v4
         with:
-          name: app-dist
+          name: dist
           path: ./dist
   deploy-staging:
     runs-on: ubuntu-latest
@@ -38,8 +38,12 @@ jobs:
         uses: oven-sh/setup-bun@v2
       - name: check file presence
         run: ls -la
-      - name: Deploy Staging
-        run: bun run deploy
+      - name: check file presence 2
+        run: cd dist
+      - name: check file presence 3
+        run: ls -la
+      # - name: Deploy Staging
+      #   run: bun run deploy
   deploy-production:
     if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
     runs-on: ubuntu-latest
