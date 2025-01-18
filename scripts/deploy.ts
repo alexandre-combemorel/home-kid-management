@@ -7,7 +7,6 @@ import {
 import { createReadStream, readdir, stat } from "node:fs"
 import { promisify } from "node:util"
 import { join, relative } from "node:path"
-import { config } from "dotenv"
 import type { ErrorType, FileInfo, UploadConfig } from "./type"
 
 const SCW_ACCESS_KEY = process.env.SCW_ACCESS_KEY ?? ""
@@ -16,8 +15,6 @@ const DIST_FOLDER_TO_DEPLOY = process.env.DIST_FOLDER_TO_DEPLOY ?? ""
 const SCW_BUCKET_NAME = process.env.SCW_BUCKET_NAME ?? ""
 const SCW_END_POINT = process.env.SCW_END_POINT ?? ""
 const SCW_REGION = process.env.SCW_REGION ?? ""
-
-config()
 
 const readdirAsync = promisify(readdir)
 const statAsync = promisify(stat)
