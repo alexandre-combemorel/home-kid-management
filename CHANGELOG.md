@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.3.0
+
+### Minor Changes
+
+- c930998: test
+
 ## 1.2.0
 
 ### Minor Changes
