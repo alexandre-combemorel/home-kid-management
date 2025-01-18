@@ -14,21 +14,16 @@ export const calculateVariation = (formPayload: PayloadActions) => {
     }
   }
 
-  const pourcentageSuccess = (countTotalSuccessAction * 100) / countTotalAction
+  const countTotalFailedAction = countTotalAction - countTotalSuccessAction
 
-  // Finale score between
-  // 0% to 30% decrease -2
-  if (pourcentageSuccess < 30) {
-    return -2
-    // 30% to 60% decrease -1
+  if (countTotalFailedAction <= 1) {
+    return 1
   }
-  if (pourcentageSuccess < 60) {
-    return -1
-    // 60% to 90% even
-  }
-  if (pourcentageSuccess < 90) {
+  if (countTotalFailedAction <= 3) {
     return 0
-    // 90% to 100% increase 1
   }
-  return 1
+  if (countTotalFailedAction <= 5) {
+    return -1
+  }
+  return -2
 }
