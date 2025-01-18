@@ -41,7 +41,7 @@ export const Score = () => {
     const listOfScore = Object.values(MAPPING_NUM_DAY_NAME_DAY_ORDERED).map((day) => {
       return {
         name: day.name,
-        value: day.num === 5 ? config.STARTING_SCORE : undefined,
+        value: day.num === -1 ? config.STARTING_SCORE : undefined,
         order: day.order,
       }
     })
@@ -68,7 +68,6 @@ export const Score = () => {
       }
     })
   }, [scores])
-  console.log("🚀 ~ scoresByDay ~ scoresByDay:", scoresByDay)
 
   return (
     <Stack alignItems="center" gap={3}>
