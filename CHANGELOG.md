@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.3.1
+
+### Patch Changes
+
+- 75cd1e8: test 4
+
 ## 1.3.0
 
 ### Minor Changes
