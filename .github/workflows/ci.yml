@@ -27,7 +27,7 @@ jobs:
     env:
       SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
-      SCW_BUCKET_NAME: "home-kid-management"
+      SCW_BUCKET_NAME: "home-kid-management-staging"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
       SCW_REGION: "fr-par"
       DIST_FOLDER_TO_DEPLOY: "./app-dist"
