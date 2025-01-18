@@ -10,6 +10,13 @@ import { join, relative } from "node:path"
 import { config } from "dotenv"
 import type { ErrorType, FileInfo, UploadConfig } from "./type"
 
+const SCW_ACCESS_KEY = process.env.SCW_ACCESS_KEY ?? ""
+const SCW_SECRET_KEY = process.env.SCW_SECRET_KEY ?? ""
+const DIST_FOLDER_TO_DEPLOY = process.env.DIST_FOLDER_TO_DEPLOY ?? ""
+const SCW_BUCKET_NAME = process.env.SCW_BUCKET_NAME ?? ""
+const SCW_END_POINT = process.env.SCW_END_POINT ?? ""
+const SCW_REGION = process.env.SCW_REGION ?? ""
+
 config()
 
 const readdirAsync = promisify(readdir)
@@ -27,8 +34,8 @@ class S3MultipartUploader {
       region: config.region,
       endpoint: config.endpoint,
       credentials: {
-        accessKeyId: process.env.SCW_ACCESS_KEY!,
-        secretAccessKey: process.env.SCW_SECRET_KEY!,
+        accessKeyId: SCW_ACCESS_KEY,
+        secretAccessKey: SCW_SECRET_KEY,
       },
     })
   }
@@ -79,7 +86,7 @@ class S3MultipartUploader {
 
       console.log("All files uploaded successfully")
       this.uploadQueue = []
-    } catch (error) {
+    } catch {
       console.error("Error uploading folder:", folderPath)
       return
     }
@@ -100,7 +107,7 @@ class S3MultipartUploader {
         }),
       )
 
-      const uploadId = createResponse.UploadId!
+      const uploadId = createResponse.UploadId ?? ""
       const parts: { PartNumber: number; ETag: string }[] = []
       const numParts = Math.ceil(fileSize / this.config.chunkSize)
 
@@ -120,7 +127,7 @@ class S3MultipartUploader {
 
         parts.push({
           PartNumber: partNumber,
-          ETag: uploadPartResponse.ETag!,
+          ETag: uploadPartResponse.ETag ?? "",
         })
 
         console.log(`Uploaded part ${partNumber}/${numParts} for ${relativePath}`)
@@ -147,9 +154,9 @@ class S3MultipartUploader {
 // Example usage
 async function main() {
   const config: UploadConfig = {
-    bucket: process.env.SCW_BUCKET_NAME!,
-    endpoint: process.env.SCW_END_POINT!,
-    region: process.env.SCW_REGION!,
+    bucket: SCW_BUCKET_NAME,
+    endpoint: SCW_END_POINT,
+    region: SCW_REGION,
     chunkSize: 5 * 1024 * 1024, // 5MB minimum
     concurrentUploads: 3,
     excludeFiles: [".DS_Store"],
@@ -158,7 +165,7 @@ async function main() {
   const uploader = new S3MultipartUploader(config)
 
   try {
-    await uploader.uploadFolder("./dist")
+    await uploader.uploadFolder(DIST_FOLDER_TO_DEPLOY)
   } catch {
     console.error("Upload failed")
   }

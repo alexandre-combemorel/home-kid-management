@@ -16,6 +16,10 @@ jobs:
         run: |
           bun install --frozen-lockfile
           bun run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-dist
+          path: ./dist
   deploy-staging:
     runs-on: ubuntu-latest
     needs: [build]
@@ -25,9 +29,13 @@ jobs:
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
       SCW_REGION: "fr-par"
+      DIST_FOLDER_TO_DEPLOY: "./dist"
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4
+      - name: Set up bun
+        uses: oven-sh/setup-bun@v2
       - name: check file presence
         run: ls -la
       - name: Deploy Staging
@@ -42,5 +50,6 @@ jobs:
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
       SCW_REGION: "fr-par"
+      DIST_FOLDER_TO_DEPLOY: "./dist"
     steps:
       - uses: actions/checkout@v4
