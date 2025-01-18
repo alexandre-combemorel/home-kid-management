@@ -36,7 +36,6 @@ jobs:
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       SCW_BUCKET_NAME: "home-kid-management-staging"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
-      SCW_REGION: "fr-par"
       DIST_FOLDER_TO_DEPLOY: "./app-dist"
     steps:
       - uses: actions/checkout@v4
@@ -49,11 +48,7 @@ jobs:
           aws_secret_access_key: ${{ env.SCW_SECRET_KEY }}
           aws_bucket: ${{ env.SCW_BUCKET_NAME }}
           source_dir: ${{ env.DIST_FOLDER_TO_DEPLOY }}
-      # - uses: oven-sh/setup-bun@v2
-      # - name: Deploy
-      #   run: |
-      #     bun install --frozen-lockfile
-      #     bun run deploy
+          destination_dir: ''
   deploy-production:
     if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
     environment: production
@@ -64,15 +59,16 @@ jobs:
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
-      SCW_REGION: "fr-par"
       DIST_FOLDER_TO_DEPLOY: "./app-dist"
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
-      - name: Set up bun
-        uses: oven-sh/setup-bun@v2
-      - name: Deploy
-        run: |
-          bun install --frozen-lockfile
-          bun run deploy
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          endpoint: ${{ env.SCW_END_POINT }}
+          aws_key_id: ${{ env.SCW_ACCESS_KEY }}
+          aws_secret_access_key: ${{ env.SCW_SECRET_KEY }}
+          aws_bucket: ${{ env.SCW_BUCKET_NAME }}
+          source_dir: ${{ env.DIST_FOLDER_TO_DEPLOY }}
+          destination_dir: ''
