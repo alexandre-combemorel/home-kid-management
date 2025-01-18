@@ -18,7 +18,7 @@ jobs:
           bun run build
       - uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: app-dist
           path: ./dist
   deploy-staging:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
       SCW_REGION: "fr-par"
-      DIST_FOLDER_TO_DEPLOY: "./dist"
+      DIST_FOLDER_TO_DEPLOY: "./app-dist"
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
@@ -39,7 +39,7 @@ jobs:
       - name: check file presence
         run: |
           ls -la
-          cd dist
+          cd app-dist
           ls -la
       # - name: Deploy Staging
       #   run: bun run deploy
