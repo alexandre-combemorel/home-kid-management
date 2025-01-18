@@ -37,11 +37,10 @@ jobs:
       - name: Set up bun
         uses: oven-sh/setup-bun@v2
       - name: check file presence
-        run: ls -la
-      - name: check file presence 2
-        run: cd dist
-      - name: check file presence 3
-        run: ls -la
+        run: |
+          ls -la
+          cd dist
+          ls -la
       # - name: Deploy Staging
       #   run: bun run deploy
   deploy-production:
