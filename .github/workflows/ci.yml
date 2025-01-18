@@ -12,6 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
       - name: build
         run: |
           bun install --frozen-lockfile
@@ -38,7 +45,9 @@ jobs:
       - name: Set up bun
         uses: oven-sh/setup-bun@v2
       - name: Deploy
-        run: bun run deploy
+        run: |
+          bun install --frozen-lockfile
+          bun run deploy
   deploy-production:
     if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
     environment: production
@@ -58,4 +67,6 @@ jobs:
       - name: Set up bun
         uses: oven-sh/setup-bun@v2
       - name: Deploy
-        run: bun run deploy
+        run: |
+          bun install --frozen-lockfile
+          bun run deploy
