@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build-and-deploy": "bun run build ; bun run ./scripts/deploy.ts"
+    "deploy": "./scripts/deploy.ts",
+    "version": "changeset version"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

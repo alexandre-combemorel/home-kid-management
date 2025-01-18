@@ -3,11 +3,10 @@ import {
   CreateMultipartUploadCommand,
   UploadPartCommand,
   CompleteMultipartUploadCommand,
-  AbortMultipartUploadCommand,
 } from "@aws-sdk/client-s3"
 import { createReadStream, readdir, stat } from "node:fs"
 import { promisify } from "node:util"
-import { extname, join, relative } from "node:path"
+import { join, relative } from "node:path"
 import { config } from "dotenv"
 import type { ErrorType, FileInfo, UploadConfig } from "./type"
 
