@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.2.0
+
+### Minor Changes
+
+- ec16a1e: add deployment
+
 ## 1.1.0
 
 ### Minor Changes
