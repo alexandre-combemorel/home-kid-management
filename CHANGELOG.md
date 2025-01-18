@@ -1,11 +1,5 @@
 # home-kid-management
 
-## 1.2.1
-
-### Patch Changes
-
-- test
-
 ## 1.2.0
 
 ### Minor Changes
