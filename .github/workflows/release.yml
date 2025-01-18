@@ -11,13 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      # - name: Git Identity
-      #   run: |
-      #     git config --global user.name 'Scaleway Bot'
-      #     git config --global user.email 'github@scaleway.com'
-      #     git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.PAT }}
       - run: bun install
       - name: Create Release Pull Request
         id: changesets
