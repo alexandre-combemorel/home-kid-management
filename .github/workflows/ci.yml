@@ -15,7 +15,7 @@ jobs:
       - name: build
         run: |
           bun install --frozen-lockfile
-          bun build
+          bun run build
   deploy-staging:
     runs-on: ubuntu-latest
     needs: [build]
