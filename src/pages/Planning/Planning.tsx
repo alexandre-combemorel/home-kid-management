@@ -16,6 +16,8 @@ type FormMoment = {
   moment: string
 }
 
+console.log("test")
+
 export const Planning = () => {
   const navigate = useNavigate()
   const { control } = useForm<FormMoment>({
