@@ -31,6 +31,6 @@ jobs:
           commit: "chore: release"
           title: "chore: release"
           publish: bun release
-          # createGithubReleases: true
+          createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
