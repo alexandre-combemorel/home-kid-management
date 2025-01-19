@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.4.5
+
+### Patch Changes
+
+- add deploy prod test 2
+
 ## 1.4.4
 
 ### Patch Changes
