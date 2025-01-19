@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.4.4
+
+### Patch Changes
+
+- test push tag
+
 ## 1.4.3
 
 ### Patch Changes
