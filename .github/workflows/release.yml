@@ -30,7 +30,7 @@ jobs:
         with:
           commit: "chore: release"
           title: "chore: release"
-          publish: bun changeset tag
+          publish: bun release
           # createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
