@@ -19,6 +19,11 @@ jobs:
           restore-keys: |
             bun-${{ runner.os }}-
       - run: bun install --frozen-lockfile
+      - name: Git Identity
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
@@ -26,6 +31,6 @@ jobs:
           commit: "chore: release"
           title: "chore: release"
           publish: bun changeset tag
-          createGithubReleases: true
+          # createGithubReleases: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
