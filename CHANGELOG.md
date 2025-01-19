@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.4.3
+
+### Patch Changes
+
+- f181db4: fix: prod deployment
+
 ## 1.2.3
 
 ### Patch Changes
