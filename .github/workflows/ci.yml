@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - main2
+      - main
 
 jobs:
   build:
@@ -60,10 +60,15 @@ jobs:
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
       DIST_FOLDER_TO_DEPLOY: "./app-dist"
+      BRANCH_MERGED: ${{ github.event.pull_request.head.ref }}
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
+      - name: Checks
+        run: |
+          echo env: ${{ env.BRANCH_MERGED }}
+          echo var: ${{ github.event.pull_request.head.ref }}
       - uses: shallwefootball/s3-upload-action@master
         with:
           endpoint: ${{ env.SCW_END_POINT }}
