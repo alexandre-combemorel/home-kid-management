@@ -1,6 +1,8 @@
 name: CI
 on:
   push:
+    tags:
+      - 'v*'
     branches:
       - main
 
@@ -51,15 +53,13 @@ jobs:
   #         destination_dir: ''
 
   deploy-production-test:
+    if: startsWith(github.ref, 'refs/tags/v')
     environment: production
     runs-on: ubuntu-latest
-    env:
-      BRANCH_MERGED: ${{ github.event.pull_request.head.ref }}
     steps:
       - name: Checks
         run: |
-          echo env: ${{ env.BRANCH_MERGED }}
-          echo var: ${{ github.event.pull_request.head.ref }}
+          echo "trigger with tag"
 
   # deploy-production:
   #   if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'changeset-release/main'
