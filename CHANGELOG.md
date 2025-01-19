@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.2.2
+
+### Patch Changes
+
+- 0f07c39: test deploy
+
 ## 1.2.1
 
 ### Patch Changes
