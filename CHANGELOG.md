@@ -1,5 +1,11 @@
 # home-kid-management
 
+## 1.4.7
+
+### Patch Changes
+
+- again
+
 ## 1.4.6
 
 ### Patch Changes

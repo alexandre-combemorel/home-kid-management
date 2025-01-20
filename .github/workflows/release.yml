@@ -33,4 +33,4 @@ jobs:
           publish: bun release
           createGithubReleases: true
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.PAT2 }}
