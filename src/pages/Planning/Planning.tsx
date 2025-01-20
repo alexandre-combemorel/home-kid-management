@@ -68,7 +68,9 @@ export const Planning = () => {
                     <Text as="p" variant="bodySmall">
                       {timeStart.toStringHHMM()} à {timeEnd.toStringHHMM()}
                     </Text>
-                    <ImageTag src={moment.img.url} />
+                    <Stack width={"100%"} alignItems="center">
+                      <ImageTag src={moment.img.url} />
+                    </Stack>
                   </SelectableCardField>
                   {Time.isTimeCurrentlyHappening(timeStart, timeEnd) && (
                     <EmojiWrapper>
