@@ -1,4 +1,4 @@
-import { Loader, Stack, Text } from "@ultraviolet/ui"
+import { Button, Loader, Stack, Text } from "@ultraviolet/ui"
 import { taskRoute } from "./route"
 import { useCallback, useMemo, useState } from "react"
 import { ImageTag } from "../../components/ImageTag"
@@ -16,13 +16,21 @@ const SelectableCardFieldStyled = styled(SelectableCardField)`
   padding: 0;
 `
 const StackStyled = styled(Stack)`
+  position: relative;
   width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.space["2"]};
 `
 
+const ButtonSkip = styled(Button)`
+  position: absolute;
+  right: 4px;
+  top: 4px;
+`
+
 type FormType = {
   taskValidated: string[]
+  taskSkipped: string[]
   [key: string]: boolean | string[]
 }
 
@@ -37,10 +45,12 @@ export const Task = () => {
   const methods = useForm<FormType>({
     defaultValues: {
       taskValidated: [],
+      taskSkipped: [],
     },
   })
 
   const taskValidated = useWatch({ control: methods.control, name: "taskValidated" })
+  const taskSkipped = useWatch({ control: methods.control, name: "taskSkipped" })
 
   const onToggleActionsTask = useCallback(
     (taskId: string, validated: boolean) => {
@@ -58,30 +68,41 @@ export const Task = () => {
     [taskValidated, listOfTaskFromMoment],
   )
 
+  const onToggleSkipTask = useCallback(
+    (taskId: string, isSkipping: boolean) => {
+      const taskSkippedNew = isSkipping
+        ? [...taskSkipped, `task_${taskId}`]
+        : taskSkipped.filter((tid) => tid !== `task_${taskId}`)
+
+      methods.setValue("taskSkipped", taskSkippedNew)
+    },
+    [taskSkipped, methods],
+  )
+
+  const isTaskSkipped = useCallback(
+    (taskId: string) => !!taskSkipped.find((tid) => tid === `task_${taskId}`),
+    [taskSkipped],
+  )
+
   const onSubmit = useCallback(
     async (values: FormType) => {
       if (areAllTaskValidated) {
-        /*
-        # making request with
-        - list of actions (checked et unchecked)
-        - associated task id
-        - timestamp à l'heure
-        */
-        const taskAndActions = values.taskValidated.reduce<PayloadActions>((acc, taskId) => {
-          const listOfKeys = Object.keys(values).filter((key) => key.startsWith(taskId))
+        const taskAndActions = values.taskValidated
+          .filter((taskId) => !taskSkipped.includes(taskId))
+          .reduce<PayloadActions>((acc, taskId) => {
+            const listOfKeys = Object.keys(values).filter((key) => key.startsWith(taskId))
 
-          acc[taskId] = listOfKeys.reduce<{ [key2: string]: boolean }>((acc2, taskactionkey) => {
-            const actionkey = taskactionkey.split("-")[1]
-            acc2[actionkey] = !!values[taskactionkey]
+            acc[taskId] = listOfKeys.reduce<{ [key2: string]: boolean }>((acc2, taskactionkey) => {
+              const actionkey = taskactionkey.split("-")[1]
+              acc2[actionkey] = !!values[taskactionkey]
 
-            return acc2
+              return acc2
+            }, {})
+
+            return acc
           }, {})
 
-          return acc
-        }, {})
-
         const scoreCalculated = calculateVariation(taskAndActions)
-        console.log("score: ", scoreCalculated)
         setScore(scoreCalculated)
         await api.setScore({
           momentDocumentId: momentId,
@@ -90,7 +111,7 @@ export const Task = () => {
         })
       }
     },
-    [areAllTaskValidated, momentId],
+    [areAllTaskValidated, momentId, taskSkipped],
   )
 
   if (typeof score === "number") {
@@ -109,6 +130,7 @@ export const Task = () => {
             </Submit>
             <Stack direction="row" gap={2} wrap alignItems="flex-start">
               {listOfTaskFromMoment.map((task) => {
+                const isCurrentTaskSkipped = isTaskSkipped(task.documentId)
                 return (
                   <SelectableCardFieldStyled
                     key={task.documentId}
@@ -116,26 +138,36 @@ export const Task = () => {
                     name={"taskValidated"}
                     value={`task_${task.documentId}`}
                     type="checkbox"
+                    disabled={isCurrentTaskSkipped}
                   >
                     <StackStyled
                       onClick={(event) => event.stopPropagation()}
                       gap={2}
                       alignItems="center"
                     >
+                      <ButtonSkip
+                        variant="ghost"
+                        size="xsmall"
+                        onClick={() => onToggleSkipTask(task.documentId, !isCurrentTaskSkipped)}
+                      >
+                        {isCurrentTaskSkipped ? "Unskip" : "Skip"}
+                      </ButtonSkip>
                       <Text as="p" variant="headingSmallStrong">
                         {task.title}
                       </Text>
                       <ImageTag src={task.img.url} />
-                      <FormActions
-                        isValidated={taskValidated.includes(`task_${task.documentId}`)}
-                        task={task}
-                        onValidate={() => {
-                          onToggleActionsTask(task.documentId, true)
-                        }}
-                        onUnvalidate={() => {
-                          onToggleActionsTask(task.documentId, false)
-                        }}
-                      />
+                      {!isCurrentTaskSkipped ? (
+                        <FormActions
+                          isValidated={taskValidated.includes(`task_${task.documentId}`)}
+                          task={task}
+                          onValidate={() => {
+                            onToggleActionsTask(task.documentId, true)
+                          }}
+                          onUnvalidate={() => {
+                            onToggleActionsTask(task.documentId, false)
+                          }}
+                        />
+                      ) : null}
                     </StackStyled>
                   </SelectableCardFieldStyled>
                 )
