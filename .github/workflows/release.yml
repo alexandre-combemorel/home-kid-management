@@ -34,5 +34,5 @@ jobs:
           title: "chore: release"
           publish: bun release
           createGithubReleases: true
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.PAT2 }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
