@@ -1,11 +1,11 @@
 import { createRoute } from "@tanstack/react-router"
-import { Score } from "./Score"
+import { Profile } from "./Profile"
 import { rootRoute } from "../../rootRoute"
 import { beforeLoad } from "../../helpers/router"
 
-export const scoreRoute = createRoute({
+export const profileRoute = createRoute({
   beforeLoad,
   getParentRoute: () => rootRoute,
-  path: "/score",
-  component: Score,
+  path: "/profile",
+  component: Profile,
 })
