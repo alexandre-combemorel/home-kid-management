@@ -3,6 +3,11 @@ import Strapi from "strapi-sdk-js"
 
 const strapi = new Strapi({
   url: import.meta.env.VITE_BACKEND_URL,
+  store: {
+    key: "home_kid_management_jwt",
+    useLocalStorage: false,
+    cookieOptions: { path: "/" },
+  },
 })
 
 // Add a response interceptor

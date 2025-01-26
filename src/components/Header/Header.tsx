@@ -1,8 +1,9 @@
 import { useTheme } from "@emotion/react"
 import styled from "@emotion/styled"
-import { SwitchButton, up } from "@ultraviolet/ui"
+import { Button, Stack, SwitchButton, up } from "@ultraviolet/ui"
 import type { ThemeValue } from "../../providers/ThemeProvider/ThemeProvider"
 import { Menu } from "./Menu/Menu"
+import { Link } from "@tanstack/react-router"
 
 const HeaderContainer = styled.header`
   min-height: 60px;
@@ -40,16 +41,23 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <Menu />
-      <SwitchButton
-        name="theme"
-        value={theme}
-        leftButton={{ label: "light", value: "light" }}
-        rightButton={{ label: "dark", value: "dark" }}
-        onChange={(event) => {
-          const value = event.target.getAttribute("value")
-          setTheme(value as ThemeValue)
-        }}
-      />
+      <Stack direction="row" gap={2}>
+        <Link key={"profile"} to={"/profile"}>
+          <Button variant="ghost" sentiment="neutral">
+            👤 Profile
+          </Button>
+        </Link>
+        <SwitchButton
+          name="theme"
+          value={theme}
+          leftButton={{ label: "light", value: "light" }}
+          rightButton={{ label: "dark", value: "dark" }}
+          onChange={(event) => {
+            const value = event.target.getAttribute("value")
+            setTheme(value as ThemeValue)
+          }}
+        />
+      </Stack>
     </HeaderContainer>
   )
 }
