@@ -16,13 +16,13 @@ export const calculateVariation = (formPayload: PayloadActions) => {
 
   const countTotalFailedAction = countTotalAction - countTotalSuccessAction
 
-  if (countTotalFailedAction <= 1) {
-    return 1
+  if (countTotalFailedAction === 0) {
+    return 0.5
   }
-  if (countTotalFailedAction <= 3) {
+  if (countTotalFailedAction === 1) {
     return 0
   }
-  if (countTotalFailedAction <= 5) {
+  if (countTotalFailedAction === 2) {
     return -1
   }
   return -2
