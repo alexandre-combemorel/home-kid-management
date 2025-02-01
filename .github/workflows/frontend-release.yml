@@ -30,7 +30,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          cwd: "./frontend"
+          cwd: "./frontend" # path used for actions need to be root relative
           commit: "chore: release"
           title: "chore: release"
           publish: bun release

@@ -1,8 +1,8 @@
 name: CI
 on:
   push:
-    # paths:
-    #   - "frontend/**"
+    paths:
+      - "frontend/**"
     tags:
       - "v*"
     branches:
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: app-dist
-          path: ./frontend/dist
+          path: ./frontend/dist # path used for actions need to be root relative
 
   deploy-staging:
     defaults:
@@ -48,17 +48,11 @@ jobs:
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       SCW_BUCKET_NAME: "home-kid-management-staging"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
-      DIST_FOLDER_TO_DEPLOY: "./app-dist"
+      DIST_FOLDER_TO_DEPLOY: "./app-dist" # path used for actions need to be root relative
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
-      - name: list files
-        run: |
-          ls -la
-          cd ../
-          echo "cd dir back"
-          ls -la
       - uses: shallwefootball/s3-upload-action@master
         with:
           endpoint: ${{ env.SCW_END_POINT }}
@@ -81,7 +75,7 @@ jobs:
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
       SCW_BUCKET_NAME: "home-kid-management"
       SCW_END_POINT: "https://s3.fr-par.scw.cloud/"
-      DIST_FOLDER_TO_DEPLOY: "./app-dist"
+      DIST_FOLDER_TO_DEPLOY: "./app-dist" # path used for actions need to be root relative
     steps:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
