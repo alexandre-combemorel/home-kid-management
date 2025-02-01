@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import AuthProvider from "./providers/AuthProvider/AuthProvider.tsx"
 const queryClient = new QueryClient()
 
+// Main
 // biome-ignore lint/style/noNonNullAssertion: this is root dom access for react
 const rootElement = document.getElementById("root")!
 if (!rootElement.innerHTML) {
