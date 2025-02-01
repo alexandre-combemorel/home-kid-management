@@ -1,5 +1,17 @@
 # home-kid-management
 
+## 1.5.0
+
+### Minor Changes
+
+- 737f9c5: Add skip task
+- 737f9c5: add login functionnality
+
+### Patch Changes
+
+- 5596bbb: move folder
+- 737f9c5: change variation count
+
 ## 1.4.9
 
 ### Patch Changes
