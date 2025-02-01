@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  login:
+  docker-push:
     defaults:
       run:
         working-directory: ./backend
@@ -32,6 +32,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          entrypoint: ./backend/Dockerfile
+          context: ./backend
           push: false
           tags: backend:latest
