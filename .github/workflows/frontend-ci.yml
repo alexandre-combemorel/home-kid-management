@@ -1,8 +1,8 @@
 name: CI
 on:
   push:
-    paths:
-      - "frontend/**"
+    # paths:
+    #   - "frontend/**"
     tags:
       - "v*"
     branches:
