@@ -1,13 +1,18 @@
 name: CI
 on:
   push:
+    paths:
+      - "frontend/**"
     tags:
-      - 'v*'
+      - "v*"
     branches:
       - main
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: ./frontend
     runs-on: ubuntu-latest
     env:
       VITE_BACKEND_URL: "https://backendhomekidmanage2go4qzln-container-kid-home-management.functions.fnc.fr-par.scw.cloud/"
@@ -31,6 +36,9 @@ jobs:
           path: ./dist
 
   deploy-staging:
+    defaults:
+      run:
+        working-directory: ./frontend
     if: ${{ ! startsWith(github.ref, 'refs/tags/v') }}
     environment: staging
     runs-on: ubuntu-latest
@@ -52,9 +60,12 @@ jobs:
           aws_secret_access_key: ${{ env.SCW_SECRET_KEY }}
           aws_bucket: ${{ env.SCW_BUCKET_NAME }}
           source_dir: ${{ env.DIST_FOLDER_TO_DEPLOY }}
-          destination_dir: ''
+          destination_dir: ""
 
   deploy-production:
+    defaults:
+      run:
+        working-directory: ./frontend
     if: startsWith(github.ref, 'refs/tags/v')
     environment: production
     runs-on: ubuntu-latest
@@ -76,4 +87,4 @@ jobs:
           aws_secret_access_key: ${{ env.SCW_SECRET_KEY }}
           aws_bucket: ${{ env.SCW_BUCKET_NAME }}
           source_dir: ${{ env.DIST_FOLDER_TO_DEPLOY }}
-          destination_dir: ''
+          destination_dir: ""
