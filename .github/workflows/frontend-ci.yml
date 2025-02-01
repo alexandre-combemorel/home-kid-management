@@ -55,7 +55,10 @@ jobs:
         uses: actions/download-artifact@v4
       - name: list files
         run: |
-          ls -l
+          ls -la
+          cd ../
+          echo "cd dir back"
+          ls -la
       - uses: shallwefootball/s3-upload-action@master
         with:
           endpoint: ${{ env.SCW_END_POINT }}
