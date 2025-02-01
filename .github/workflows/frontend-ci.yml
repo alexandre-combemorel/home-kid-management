@@ -53,6 +53,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v4
+      - uses: |
+          ls -l
       - uses: shallwefootball/s3-upload-action@master
         with:
           endpoint: ${{ env.SCW_END_POINT }}

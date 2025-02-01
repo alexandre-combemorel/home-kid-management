@@ -30,6 +30,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
+          cwd: "./frontend"
           commit: "chore: release"
           title: "chore: release"
           publish: bun release
