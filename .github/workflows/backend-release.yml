@@ -18,6 +18,8 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
       - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "./backend/package.json"
       - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish
         id: changesets
