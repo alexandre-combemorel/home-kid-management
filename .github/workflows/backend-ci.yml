@@ -1,9 +1,9 @@
-name: CI
+name: CI-backend
 
 on:
   push:
     branches:
-      - main
+      - main2
 
 jobs:
   docker-push:

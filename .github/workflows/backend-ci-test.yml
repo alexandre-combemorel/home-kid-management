@@ -1,0 +1,39 @@
+name: CI-backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker-push:
+    defaults:
+      run:
+        working-directory: ./test
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+      SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to SCW
+        uses: docker/login-action@v3
+        with:
+          registry: rg.fr-par.scw.cloud/home-kid-management
+          username: ${{ secrets.SCW_ACCESS_KEY }}
+          password: ${{ secrets.SCW_SECRET_KEY }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          build-args: NODE_ENV=from-ci-prod
+          context: ./backend
+          push: true
+          tags: backend-test:latest
