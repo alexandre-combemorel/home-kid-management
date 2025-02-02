@@ -31,8 +31,8 @@ jobs:
         uses: changesets/action@v1
         with:
           cwd: "./frontend" # path used for actions need to be root relative
-          commit: "chore: release"
-          title: "chore: release"
+          commit: "chore: release frontend"
+          title: "chore: release frontend"
           publish: bun release
           createGithubReleases: true
         env:
