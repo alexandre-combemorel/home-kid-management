@@ -58,9 +58,9 @@ ENV PATH="${PNPM_HOME}:${PATH}"
 WORKDIR /opt/app
 RUN pnpm add --global node-gyp
 COPY . .
-RUN pnpm install --force
+RUN pnpm install
 RUN chown -R node:node /opt/app
 USER node
-RUN pnpm build
+# RUN pnpm build
 EXPOSE 1337
-CMD ["pnpm", "start"]
+CMD ["pnpm", "develop", "--debug"]
