@@ -3,7 +3,7 @@ name: CI-backend
 on:
   push:
     branches:
-      - main2
+      - main
 
 jobs:
   docker-push:
