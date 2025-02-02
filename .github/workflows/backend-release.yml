@@ -1,8 +1,8 @@
 name: Release-backend
 on:
   push:
-    # paths:
-    #   - "backend/**"
+    paths:
+      - "backend/**"
     branches:
       - main
 jobs:
