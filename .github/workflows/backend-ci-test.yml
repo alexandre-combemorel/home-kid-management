@@ -34,6 +34,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           build-args: NODE_ENV=from-ci-prod
-          context: ./backend
+          context: ./test
           push: true
           tags: backend-test:latest
