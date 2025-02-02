@@ -1,4 +1,4 @@
-name: CI-backend
+name: CI-backend-test
 
 on:
   push:
@@ -36,4 +36,4 @@ jobs:
           build-args: NODE_ENV=from-ci-prod
           context: ./test
           push: true
-          tags: backend-test:latest
+          tags: rg.fr-par.scw.cloud/home-kid-management/backend-test:latest
