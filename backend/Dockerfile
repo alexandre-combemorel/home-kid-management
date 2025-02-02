@@ -75,4 +75,4 @@ USER node
 RUN pnpm install
 RUN pnpm build
 EXPOSE 1337
-CMD echo "DATABASE_USERNAME" && echo $DATABASE_USERNAME && pnpm develop --debug
+CMD echo "DATABASE_USERNAME" && echo $DATABASE_USERNAME && pnpm start
