@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.7-labs
 FROM node:20.18.1-alpine3.21
 # Installing libvips-dev for sharp Compatibility
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
@@ -57,10 +58,21 @@ ENV PATH="${PNPM_HOME}:${PATH}"
 
 WORKDIR /opt/app
 RUN pnpm add --global node-gyp
-COPY . .
-RUN pnpm install
+COPY ./config ./config
+COPY ./data ./data
+COPY ./database ./database
+COPY ./public ./public
+COPY ./scripts ./scripts
+COPY ./src ./src
+COPY ./types ./types
+COPY favicon.png ./favicon.png
+COPY package.json ./package.json
+COPY pnpm-lock.yaml ./pnpm-lock.yaml
+COPY README.md ./README.md
+COPY tsconfig.json ./tsconfig.json
 RUN chown -R node:node /opt/app
 USER node
-# RUN pnpm build
+RUN pnpm install
+RUN pnpm build
 EXPOSE 1337
 CMD ["pnpm", "develop", "--debug"]
