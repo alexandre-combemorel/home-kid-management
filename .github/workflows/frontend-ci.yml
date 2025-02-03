@@ -6,7 +6,7 @@ on:
     tags:
       - "*"
     branches:
-      - main2
+      - main
 
 jobs:
   build:
