@@ -1,10 +1,4 @@
-# home-kid-management
-
-## 1.5.1
-
-### Patch Changes
-
-- 6a87887: test 2
+# @hkm/front
 
 ## 1.5.0
 

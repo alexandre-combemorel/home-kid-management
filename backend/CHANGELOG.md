@@ -1,10 +1,4 @@
-# backend
-
-## 0.2.1
-
-### Patch Changes
-
-- 040e933: test
+# @hkm/back
 
 ## 0.2.0
 
