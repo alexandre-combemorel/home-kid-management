@@ -1,5 +1,11 @@
 # @hkm/front
 
+## 1.5.1
+
+### Patch Changes
+
+- c7171f7: Switch to monorepo
+
 ## 1.5.0
 
 ### Minor Changes
