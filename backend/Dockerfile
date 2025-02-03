@@ -59,7 +59,6 @@ ENV PATH="${PNPM_HOME}:${PATH}"
 WORKDIR /opt/app
 RUN pnpm add --global node-gyp
 COPY ./config ./config
-COPY ./data ./data
 COPY ./database ./database
 COPY ./public ./public
 COPY ./scripts ./scripts
