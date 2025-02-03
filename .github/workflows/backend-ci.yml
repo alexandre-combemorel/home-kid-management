@@ -5,7 +5,7 @@ on:
     paths:
       - "backend/**"
     tags:
-      - "v*"
+      - "*"
     branches:
       - main
 
@@ -55,7 +55,7 @@ jobs:
             SCALEWAY_BUCKET=${{ secrets.SCALEWAY_BUCKET }}
           context: ./backend
           push: true
-          tags: rg.fr-par.scw.cloud/home-kid-management/backend-staging:${{ github.ref_name }}
+          tags: rg.fr-par.scw.cloud/home-kid-management/backend-staging:latest
 
   deploy-production:
     defaults:

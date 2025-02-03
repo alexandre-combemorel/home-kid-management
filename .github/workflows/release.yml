@@ -1,15 +1,10 @@
-name: Release-backend
+name: Release
 on:
   push:
-    paths:
-      - "backend/**"
     branches:
       - main
 jobs:
   release:
-    defaults:
-      run:
-        working-directory: ./backend
     name: Release
     runs-on: ubuntu-latest
     permissions: write-all
@@ -18,16 +13,13 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
       - uses: pnpm/action-setup@v4
-        with:
-          package_json_file: "./backend/package.json"
       - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish
         id: changesets
         uses: changesets/action@v1
         with:
-          cwd: "./backend" # path used for actions need to be root relative
-          commit: "chore: release backend"
-          title: "chore: release backend"
+          commit: "chore: release"
+          title: "chore: release"
           publish: pnpm release
           createGithubReleases: true
         env:

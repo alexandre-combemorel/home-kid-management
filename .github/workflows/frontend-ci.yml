@@ -4,7 +4,7 @@ on:
     paths:
       - "frontend/**"
     tags:
-      - "v*"
+      - "*"
     branches:
       - main
 
