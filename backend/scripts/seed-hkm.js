@@ -7,13 +7,9 @@ const actions = require("../data/hkm-data/tidy/actions.json");
 
 const UserId = 1;
 
-function sleep(ms) {
-	return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function seedStagingApp() {
+async function seedApp() {
 	try {
-		console.log("Setting up the template...");
+		console.log("Setting up...");
 		await importSeedData();
 		console.log("Ready to go");
 	} catch (error) {
@@ -22,11 +18,8 @@ async function seedStagingApp() {
 	}
 }
 
-// Create an entry and attach files if there are any
 async function createEntry({ model, entry }) {
 	try {
-		// Actually create the entry in Strapi
-		// await sleep(100);
 		await strapi.documents(`api::${model}.${model}`).create({
 			data: entry,
 			status: "published",
@@ -36,58 +29,128 @@ async function createEntry({ model, entry }) {
 	}
 }
 
-async function importAll(moment) {
+async function queryEntry({ model, filters }) {
+	try {
+		return strapi.documents(`api::${model}.${model}`).findFirst({
+			filters: filters,
+		});
+	} catch (error) {
+		console.error({ model, filters, error });
+	}
+}
+
+async function queryImg(fileName) {
+	try {
+		return strapi.query("plugin::upload.file").findOne({
+			filters: {
+				name: {
+					$eq: fileName,
+				},
+			},
+		});
+	} catch (error) {
+		console.error({ fileName, error });
+	}
+}
+
+async function importTaskAndMoment(moment) {
+	const listOfTaskToAssignToMoment = [];
 	for (const task of moment.tasks) {
-		for (const actionsMatin of task.actions) {
-			await createEntry({
+		const listOfActionToAssignToTask = [];
+		for (const action of task.actions) {
+			const actionReturned = await queryEntry({
 				model: "action",
+				filters: {
+					title: {
+						$eq: action.title,
+					},
+				},
+			});
+			listOfActionToAssignToTask.push(actionReturned.id);
+		}
+		const imgTaskResult = await queryImg(task.img.fileName);
+		console.log(
+			"🚀 ~ importTaskAndMoment ~ task.img.fileName:",
+			task.img.fileName,
+			"result: ",
+			imgTaskResult?.id,
+		);
+		const taskAlreadyExist = await queryEntry({
+			model: "task",
+			filters: {
+				title: {
+					$eq: task.title,
+				},
+			},
+		});
+		let taskAcc = taskAlreadyExist;
+		if (!taskAlreadyExist) {
+			await createEntry({
+				model: "task",
 				entry: {
-					id: actionsMatin.id,
-					title: actionsMatin.title,
+					title: task.title,
+					img: imgTaskResult.id,
+					actions: listOfActionToAssignToTask,
 					users_permissions_user: UserId,
 				},
 			});
+			taskAcc = await queryEntry({
+				model: "task",
+				filters: {
+					title: {
+						$eq: task.title,
+					},
+				},
+			});
 		}
+		listOfTaskToAssignToMoment.push(taskAcc.id);
+	}
+	const imgMomentResult = await queryImg(moment.img.fileName);
+	const momentAlreadyExist = await queryEntry({
+		model: "moment",
+		filters: {
+			label: {
+				$eq: moment.title,
+			},
+		},
+	});
+	if (!momentAlreadyExist) {
 		await createEntry({
-			model: "task",
+			model: "moment",
 			entry: {
-				id: task.id,
-				title: task.title,
-				img: task.img.id,
-				actions: task.actions.map((a) => a.id),
+				label: moment.label,
+				timeStart: moment.timeStart,
+				timeEnd: moment.timeEnd,
+				img: imgMomentResult.id,
+				tasks: listOfTaskToAssignToMoment,
 				users_permissions_user: UserId,
 			},
 		});
 	}
-	await createEntry({
-		model: "moment",
-		entry: {
-			id: moment.id,
-			label: moment.label,
-			timeStart: moment.timeStart,
-			timeEnd: moment.timeEnd,
-			img: moment.img.id,
-			tasks: moment.tasks.map((t) => t.id),
-			users_permissions_user: UserId,
-		},
-	});
+}
+
+async function importActions(actions) {
+	for (const action of actions) {
+		await createEntry({
+			model: "action",
+			entry: {
+				title: action.title,
+				users_permissions_user: UserId,
+			},
+		});
+		console.log(`Action created: ${action.title}`);
+	}
 }
 
 async function importSeedData() {
 	// Create all entries
-	// await importAll(momentMatin);
-	// await importAll(momentMidi);
-	// await importAll(momentApresMidi);
-	// await importAll(momentSoir);
-	// await importAll(momentSoirCouche);
-	await createEntry({
-		model: "action",
-		entry: {
-			id: actions[0].id,
-			title: actions[0].title,
-			users_permissions_user: UserId,
-		},
-	});
+	await importActions(actions);
+
+	await importTaskAndMoment(momentMatin);
+	await importTaskAndMoment(momentMidi);
+	await importTaskAndMoment(momentApresMidi);
+	await importTaskAndMoment(momentSoir);
+	await importTaskAndMoment(momentSoirCouche);
 }
 
 async function main() {
@@ -98,7 +161,7 @@ async function main() {
 
 	app.log.level = "error";
 
-	await seedStagingApp();
+	await seedApp();
 	await app.destroy();
 
 	process.exit(0);

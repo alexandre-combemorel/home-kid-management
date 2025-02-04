@@ -1,61 +1,53 @@
 [
 	{
-		"id": 1,
 		"title": "J'ai bien lavé mes doigts et mes mains entièrement"
 	},
-	{ "id": 3, "title": "J'ai bien mis et garder mes chaussons aux pieds" },
-	{ "id": 5, "title": "J'ai bien mis la table" },
+	{ "title": "J'ai bien mis et garder mes chaussons aux pieds" },
+	{ "title": "J'ai bien mis la table" },
 	{
-		"id": 7,
 		"title": "J'ai bien ramener les jouets qui trainaient dans ma chambre"
 	},
-	{ "id": 9, "title": "J'ai bien ranger ma brosse a dents et mon verre" },
-	{ "id": 11, "title": "J'ai débarrassé ma table sans soucis" },
-	{ "id": 13, "title": "J'ai finis mon assiette" },
-	{ "id": 15, "title": "J'ai la bouche propre" },
+	{ "title": "J'ai bien ranger ma brosse a dents et mon verre" },
+	{ "title": "J'ai débarrassé ma table sans soucis" },
+	{ "title": "J'ai finis mon assiette" },
+	{ "title": "J'ai la bouche propre" },
 	{
-		"id": 17,
 		"title": "J'ai laver mes cheveux correctement (si nécessaire)"
 	},
-	{ "id": 19, "title": "J'ai le coin des yeux propres" },
-	{ "id": 21, "title": "J'ai mangé dans les temps et sans râler" },
-	{ "id": 23, "title": "J'ai mangé en étant calme et sans râler" },
+	{ "title": "J'ai le coin des yeux propres" },
+	{ "title": "J'ai mangé dans les temps et sans râler" },
+	{ "title": "J'ai mangé en étant calme et sans râler" },
 	{
-		"id": 25,
 		"title": "J'ai mangé proprement (sans en mettre par terre ou sur moi)"
 	},
-	{ "id": 27, "title": "J'ai mis mes vêtements au sale dans le bon sense" },
-	{ "id": 29, "title": "J'ai passé la brosse et tiré la chasse d'eau" },
-	{ "id": 31, "title": "J'ai pensé à mon sac d'école" },
-	{ "id": 33, "title": "J'ai ranger correctement ma chambre" },
-	{ "id": 35, "title": "J'ai rangé mon pyjama dans la chambre" },
-	{ "id": 37, "title": "J'ai remis mes jouets dans ma chambre" },
-	{ "id": 39, "title": "J'ai utilisé du savon" },
+	{ "title": "J'ai mis mes vêtements au sale dans le bon sense" },
+	{ "title": "J'ai passé la brosse et tiré la chasse d'eau" },
+	{ "title": "J'ai pensé à mon sac d'école" },
+	{ "title": "J'ai ranger correctement ma chambre" },
+	{ "title": "J'ai rangé mon pyjama dans la chambre" },
+	{ "title": "J'ai remis mes jouets dans ma chambre" },
+	{ "title": "J'ai utilisé du savon" },
 	{
-		"id": 41,
 		"title": "Je me suis bien essuyé et j'ai rangé ma serviette correctement"
 	},
-	{ "id": 43, "title": "Je me suis bien essuyé les fesses" },
+	{ "title": "Je me suis bien essuyé les fesses" },
 	{
-		"id": 45,
 		"title": "Je me suis brossé les dents dans les temps et sans poser de problème"
 	},
-	{ "id": 47, "title": "Je me suis correctement brossé les dents" },
-	{ "id": 49, "title": "Je me suis couché sans problème" },
-	{ "id": 51, "title": "Je me suis essuyé les mains sur ma serviette" },
-	{ "id": 53, "title": "Je me suis habillé sans prendre trop de temps" },
-	{ "id": 55, "title": "Je me suis habillé sans râler" },
+	{ "title": "Je me suis correctement brossé les dents" },
+	{ "title": "Je me suis couché sans problème" },
+	{ "title": "Je me suis essuyé les mains sur ma serviette" },
+	{ "title": "Je me suis habillé sans prendre trop de temps" },
+	{ "title": "Je me suis habillé sans râler" },
 	{
-		"id": 57,
 		"title": "Je me suis habillé tout seul (chaussures et manteau)"
 	},
-	{ "id": 59, "title": "Je me suis lavé les mains" },
-	{ "id": 61, "title": "Je me suis lavé toutes les partis du corps" },
+	{ "title": "Je me suis lavé les mains" },
+	{ "title": "Je me suis lavé toutes les partis du corps" },
 	{
-		"id": 63,
 		"title": "Je n'ai pas fait de bruit ou trainé dans les couloirs alors que je dois dormir"
 	},
-	{ "id": 65, "title": "Je n'ai pas râler ou discuter" },
-	{ "id": 67, "title": "Je n'ai pas trainé pour partir à l'école" },
-	{ "id": 69, "title": "Je suis resté à table" }
+	{ "title": "Je n'ai pas râler ou discuter" },
+	{ "title": "Je n'ai pas trainé pour partir à l'école" },
+	{ "title": "Je suis resté à table" }
 ]

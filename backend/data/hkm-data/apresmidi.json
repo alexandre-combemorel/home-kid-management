@@ -5,14 +5,14 @@
 	"timeStart": "15:00:00.000",
 	"timeEnd": "19:30:00.000",
 	"img": {
-		"id": 35
+		"fileName": "aprem-midi.jpeg"
 	},
 	"tasks": [
 		{
 			"id": 1,
 			"title": "Ranger les jouets du salon",
 			"img": {
-				"id": 19
+				"fileName": "deplacer-ses-jouets.jpeg"
 			},
 			"actions": [
 				{
@@ -25,7 +25,7 @@
 			"id": 3,
 			"title": "Ranger sa chambre",
 			"img": {
-				"id": 21
+				"fileName": "ranger-ses-jouets.jpeg"
 			},
 			"actions": [
 				{

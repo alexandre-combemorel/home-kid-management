@@ -1,56 +1,40 @@
 {
-	"id": 12,
-
 	"label": "Midi",
 	"timeStart": "11:30:00.000",
 	"timeEnd": "15:30:00.000",
 	"img": {
-		"id": 33
+		"fileName": "midi.jpeg"
 	},
 	"tasks": [
 		{
-			"id": 40,
-
 			"title": "Se laver les mains",
 
 			"img": {
-				"id": 13
+				"fileName": "laver-les-mains.jpeg"
 			},
 			"actions": [
 				{
-					"id": 67,
-
 					"title": "J'ai bien lavé mes doigts et mes mains entièrement"
 				},
 				{
-					"id": 69,
-
 					"title": "J'ai utilisé du savon"
 				}
 			]
 		},
 		{
-			"id": 52,
-
 			"title": "Mettre la table",
 
 			"img": {
-				"id": 15
+				"fileName": "mettre-la-table.jpeg"
 			},
 			"actions": [
 				{
-					"id": 13,
-
 					"title": "J'ai bien mis la table"
 				},
 				{
-					"id": 82,
-
 					"title": "J'ai bien mis et garder mes chaussons aux pieds"
 				},
 				{
-					"id": 93,
-
 					"title": "Je n'ai pas râler ou discuter"
 				}
 			]
@@ -61,27 +45,19 @@
 			"title": "Manger",
 
 			"img": {
-				"id": 14
+				"fileName": "manger.jpeg"
 			},
 			"actions": [
 				{
-					"id": 91,
-
 					"title": "J'ai mangé dans les temps et sans râler"
 				},
 				{
-					"id": 18,
-
 					"title": "Je suis resté à table"
 				},
 				{
-					"id": 17,
-
 					"title": "Je me suis essuyé les mains sur ma serviette"
 				},
 				{
-					"id": 15,
-
 					"title": "J'ai finis mon assiette"
 				}
 			]
@@ -92,12 +68,10 @@
 			"title": "Débarasser sa table",
 
 			"img": {
-				"id": 12
+				"fileName": "debarasser-la-table.jpeg"
 			},
 			"actions": [
 				{
-					"id": 14,
-
 					"title": "J'ai débarrassé ma table sans soucis"
 				}
 			]

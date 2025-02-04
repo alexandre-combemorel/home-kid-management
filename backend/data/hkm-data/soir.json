@@ -1,46 +1,34 @@
 {
-	"id": 21,
-
 	"label": "Soir",
 	"timeStart": "18:30:00.000",
 	"timeEnd": "20:30:00.000",
 	"img": {
-		"id": 32
+		"fileName": "soir.jpeg"
 	},
 	"tasks": [
 		{
-			"id": 35,
-
 			"title": "Prendre sa douche",
 
 			"img": {
-				"id": 24
+				"fileName": "prendre-sa-douche.jpeg"
 			},
 			"actions": [
 				{
-					"id": 44,
-
 					"title": "Je me suis lavé toutes les partis du corps",
 
 					"publishedAt": "2024-12-25T11:55:32.760Z"
 				},
 				{
-					"id": 46,
-
 					"title": "J'ai laver mes cheveux correctement (si nécessaire)",
 
 					"publishedAt": "2024-12-25T11:55:57.776Z"
 				},
 				{
-					"id": 48,
-
 					"title": "Je me suis bien essuyé et j'ai rangé ma serviette correctement",
 
 					"publishedAt": "2024-12-25T11:57:33.373Z"
 				},
 				{
-					"id": 50,
-
 					"title": "J'ai mis mes vêtements au sale dans le bon sense",
 
 					"publishedAt": "2024-12-25T11:58:45.432Z"
@@ -48,31 +36,23 @@
 			]
 		},
 		{
-			"id": 52,
-
 			"title": "Mettre la table",
 
 			"img": {
-				"id": 15
+				"fileName": "mettre-la-table.jpeg"
 			},
 			"actions": [
 				{
-					"id": 13,
-
 					"title": "J'ai bien mis la table",
 
 					"publishedAt": "2024-12-20T08:40:05.450Z"
 				},
 				{
-					"id": 82,
-
 					"title": "J'ai bien mis et garder mes chaussons aux pieds",
 
 					"publishedAt": "2025-01-18T08:43:08.458Z"
 				},
 				{
-					"id": 93,
-
 					"title": "Je n'ai pas râler ou discuter",
 
 					"publishedAt": "2025-01-20T07:26:29.261Z"
@@ -85,33 +65,25 @@
 			"title": "Manger",
 
 			"img": {
-				"id": 14
+				"fileName": "manger.jpeg"
 			},
 			"actions": [
 				{
-					"id": 91,
-
 					"title": "J'ai mangé dans les temps et sans râler",
 
 					"publishedAt": "2025-01-20T07:25:56.058Z"
 				},
 				{
-					"id": 18,
-
 					"title": "Je suis resté à table",
 
 					"publishedAt": "2024-12-20T08:40:05.450Z"
 				},
 				{
-					"id": 17,
-
 					"title": "Je me suis essuyé les mains sur ma serviette",
 
 					"publishedAt": "2024-12-20T08:40:05.450Z"
 				},
 				{
-					"id": 15,
-
 					"title": "J'ai finis mon assiette",
 
 					"publishedAt": "2024-12-20T08:40:05.450Z"
@@ -124,12 +96,10 @@
 			"title": "Débarasser sa table",
 
 			"img": {
-				"id": 12
+				"fileName": "debarasser-la-table.jpeg"
 			},
 			"actions": [
 				{
-					"id": 14,
-
 					"title": "J'ai débarrassé ma table sans soucis",
 
 					"publishedAt": "2024-12-20T08:40:05.450Z"
@@ -137,17 +107,13 @@
 			]
 		},
 		{
-			"id": 36,
-
 			"title": "Ranger les jouets du salon",
 
 			"img": {
-				"id": 26
+				"fileName": "deplacer-ses-jouets.jpeg"
 			},
 			"actions": [
 				{
-					"id": 52,
-
 					"title": "J'ai bien ramener les jouets qui trainaient dans ma chambre",
 
 					"publishedAt": "2024-12-25T11:59:35.682Z"
