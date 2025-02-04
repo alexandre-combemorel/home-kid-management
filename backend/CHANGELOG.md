@@ -1,5 +1,11 @@
 # @hkm/back
 
+## 0.3.0
+
+### Minor Changes
+
+- da601cc: Upgrade strapi
+
 ## 0.2.1
 
 ### Patch Changes
