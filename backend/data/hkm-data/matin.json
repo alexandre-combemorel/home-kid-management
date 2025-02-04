@@ -1,0 +1,147 @@
+{
+	"id": 26,
+
+	"label": "Matin",
+	"timeStart": "07:35:00.000",
+	"timeEnd": "09:00:00.000",
+	"img": {
+		"id": 34
+	},
+	"tasks": [
+		{
+			"id": 47,
+
+			"title": "Prendre petit déjeuner",
+
+			"img": {
+				"id": 22
+			},
+			"actions": [
+				{
+					"id": 91,
+
+					"title": "J'ai mangé dans les temps et sans râler"
+				},
+				{
+					"id": 42,
+
+					"title": "J'ai mangé proprement (sans en mettre par terre ou sur moi)"
+				},
+				{
+					"id": 90,
+
+					"title": "J'ai mangé en étant calme et sans râler"
+				},
+				{
+					"id": 82,
+
+					"title": "J'ai bien mis et garder mes chaussons aux pieds"
+				}
+			]
+		},
+		{
+			"id": 51,
+
+			"title": "S'habiller",
+
+			"img": {
+				"id": 21
+			},
+			"actions": [
+				{
+					"id": 62,
+
+					"title": "Je me suis habillé sans prendre trop de temps"
+				},
+				{
+					"id": 64,
+
+					"title": "Je me suis habillé sans râler"
+				},
+				{
+					"id": 86,
+
+					"title": "J'ai rangé mon pyjama dans la chambre"
+				},
+				{
+					"id": 88,
+
+					"title": "J'ai remis mes jouets dans ma chambre"
+				}
+			]
+		},
+		{
+			"id": 48,
+
+			"title": "Brossage des dents",
+
+			"img": {
+				"id": 20
+			},
+			"actions": [
+				{
+					"id": 26,
+
+					"title": "J'ai bien ranger ma brosse a dents et mon verre"
+				},
+				{
+					"id": 80,
+
+					"title": "Je me suis correctement brossé les dents"
+				},
+				{
+					"id": 89,
+
+					"title": "Je me suis brossé les dents dans les temps et sans poser de problème"
+				}
+			]
+		},
+		{
+			"id": 28,
+
+			"title": "Se débarbouiller le visage",
+
+			"img": {
+				"id": 23
+			},
+			"actions": [
+				{
+					"id": 24,
+
+					"title": "J'ai la bouche propre"
+				},
+				{
+					"id": 22,
+
+					"title": "J'ai le coin des yeux propres"
+				}
+			]
+		},
+		{
+			"id": 31,
+
+			"title": "Partir à l'école",
+
+			"img": {
+				"id": 28
+			},
+			"actions": [
+				{
+					"id": 30,
+
+					"title": "J'ai pensé à mon sac d'école"
+				},
+				{
+					"id": 32,
+
+					"title": "Je me suis habillé tout seul (chaussures et manteau)"
+				},
+				{
+					"id": 34,
+
+					"title": "Je n'ai pas trainé pour partir à l'école"
+				}
+			]
+		}
+	]
+}

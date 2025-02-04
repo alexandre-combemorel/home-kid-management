@@ -1,0 +1,59 @@
+{
+	"id": 27,
+
+	"label": "Soir couché (à faire le lendemain matin)",
+	"timeStart": "07:30:00.000",
+	"timeEnd": "08:30:00.000",
+	"img": {
+		"id": 31
+	},
+	"tasks": [
+		{
+			"id": 43,
+
+			"title": "Je vais au toilette",
+
+			"img": {
+				"id": 29
+			},
+			"actions": [
+				{
+					"id": 72,
+
+					"title": "J'ai passé la brosse et tiré la chasse d'eau"
+				},
+				{
+					"id": 74,
+
+					"title": "Je me suis bien essuyé les fesses"
+				},
+				{
+					"id": 76,
+
+					"title": "Je me suis lavé les mains"
+				}
+			]
+		},
+		{
+			"id": 33,
+
+			"title": "Je me couche",
+
+			"img": {
+				"id": 27
+			},
+			"actions": [
+				{
+					"id": 38,
+
+					"title": "Je me suis couché sans problème"
+				},
+				{
+					"id": 40,
+
+					"title": "Je n'ai pas fait de bruit ou trainé dans les couloirs alors que je dois dormir"
+				}
+			]
+		}
+	]
+}
