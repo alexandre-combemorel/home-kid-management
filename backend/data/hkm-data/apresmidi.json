@@ -1,0 +1,38 @@
+{
+	"id": 23,
+
+	"label": "Après-midi",
+	"timeStart": "15:00:00.000",
+	"timeEnd": "19:30:00.000",
+	"img": {
+		"fileName": "aprem-midi.jpeg"
+	},
+	"tasks": [
+		{
+			"id": 1,
+			"title": "Ranger les jouets du salon",
+			"img": {
+				"fileName": "deplacer-ses-jouets.jpeg"
+			},
+			"actions": [
+				{
+					"id": 52,
+					"title": "J'ai bien ramener les jouets qui trainaient dans ma chambre"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"title": "Ranger sa chambre",
+			"img": {
+				"fileName": "ranger-ses-jouets.jpeg"
+			},
+			"actions": [
+				{
+					"id": 54,
+					"title": "J'ai ranger correctement ma chambre"
+				}
+			]
+		}
+	]
+}

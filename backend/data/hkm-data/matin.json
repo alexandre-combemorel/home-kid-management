@@ -1,0 +1,103 @@
+{
+	"label": "Matin",
+	"timeStart": "07:35:00.000",
+	"timeEnd": "09:00:00.000",
+	"img": {
+		"fileName": "matin.jpeg"
+	},
+	"tasks": [
+		{
+			"title": "Prendre petit déjeuner",
+
+			"img": {
+				"fileName": "prendre-petit-dejeuner.jpeg"
+			},
+			"actions": [
+				{
+					"title": "J'ai mangé dans les temps et sans râler"
+				},
+				{
+					"title": "J'ai mangé proprement (sans en mettre par terre ou sur moi)"
+				},
+				{
+					"title": "J'ai mangé en étant calme et sans râler"
+				},
+				{
+					"title": "J'ai bien mis et garder mes chaussons aux pieds"
+				}
+			]
+		},
+		{
+			"title": "S'habiller",
+
+			"img": {
+				"fileName": "shabiller.jpeg"
+			},
+			"actions": [
+				{
+					"title": "Je me suis habillé sans prendre trop de temps"
+				},
+				{
+					"title": "Je me suis habillé sans râler"
+				},
+				{
+					"title": "J'ai rangé mon pyjama dans la chambre"
+				},
+				{
+					"title": "J'ai remis mes jouets dans ma chambre"
+				}
+			]
+		},
+		{
+			"title": "Brossage des dents",
+
+			"img": {
+				"fileName": "brossage-des-dents.jpeg"
+			},
+			"actions": [
+				{
+					"title": "J'ai bien ranger ma brosse a dents et mon verre"
+				},
+				{
+					"title": "Je me suis correctement brossé les dents"
+				},
+				{
+					"title": "Je me suis brossé les dents dans les temps et sans poser de problème"
+				}
+			]
+		},
+		{
+			"title": "Se débarbouiller le visage",
+
+			"img": {
+				"fileName": "se-debarbouiller-le-visage.jpeg"
+			},
+			"actions": [
+				{
+					"title": "J'ai la bouche propre"
+				},
+				{
+					"title": "J'ai le coin des yeux propres"
+				}
+			]
+		},
+		{
+			"title": "Partir à l'école",
+
+			"img": {
+				"fileName": "aller-a-lecole.jpeg"
+			},
+			"actions": [
+				{
+					"title": "J'ai pensé à mon sac d'école"
+				},
+				{
+					"title": "Je me suis habillé tout seul (chaussures et manteau)"
+				},
+				{
+					"title": "Je n'ai pas trainé pour partir à l'école"
+				}
+			]
+		}
+	]
+}
