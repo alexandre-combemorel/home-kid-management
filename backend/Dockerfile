@@ -12,13 +12,13 @@ ARG ADMIN_JWT_SECRET
 ARG TRANSFER_TOKEN_SALT
 ARG JWT_SECRET
 # Database
-ARG DATABASE_CLIENT=postgres
+ARG DATABASE_CLIENT
 ARG DATABASE_HOST
 ARG DATABASE_PORT
-ARG DATABASE_NAME=staging
+ARG DATABASE_NAME
 ARG DATABASE_USERNAME
 ARG DATABASE_PASSWORD
-ARG DATABASE_SSL=false
+ARG DATABASE_SSL
 # Assets upload
 ARG SCALEWAY_ACCESS_KEY_ID
 ARG SCALEWAY_ACCESS_SECRET
@@ -60,7 +60,6 @@ RUN pnpm add --global node-gyp
 COPY ./config ./config
 COPY ./database ./database
 COPY ./public ./public
-COPY ./scripts ./scripts
 COPY ./src ./src
 COPY ./types ./types
 COPY favicon.png ./favicon.png
@@ -73,4 +72,4 @@ RUN pnpm install
 USER node
 RUN pnpm build
 EXPOSE 1337
-CMD pnpm start
+CMD echo "DATABASE: $DATABASE_NAME" && pnpm start
