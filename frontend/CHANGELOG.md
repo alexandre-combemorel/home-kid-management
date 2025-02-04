@@ -1,5 +1,12 @@
 # @hkm/front
 
+## 1.5.2
+
+### Patch Changes
+
+- aec47bd: Clean up CI
+- 08f5ffb: Fix auth provider req
+
 ## 1.5.1
 
 ### Patch Changes
