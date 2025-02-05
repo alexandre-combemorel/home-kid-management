@@ -7,6 +7,7 @@ jobs:
   release:
     name: Test scaleway cli
     runs-on: ubuntu-latest
+    environment: staging
     env:
       SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
