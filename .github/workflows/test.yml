@@ -1,0 +1,20 @@
+name: CI-test
+
+on:
+  push:
+    branches:
+      - feat/test
+
+jobs:
+  deploy-staging:
+    defaults:
+      run:
+        working-directory: ./backend
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/deploy-container.yml
+        with:
+          CONTAINER_ID: c9604ec2-a4c9-43ed-95c5-4bf220029531
+          REGISTRY_IMAGE: rg.fr-par.scw.cloud/home-kid-management/backend-staging:latest
