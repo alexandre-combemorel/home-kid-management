@@ -3,7 +3,7 @@ name: CI-test
 on:
   push:
     branches:
-      - feat/test
+      - feat/test-ci
 
 jobs:
   deploy-staging:
