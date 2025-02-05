@@ -1,5 +1,11 @@
 # @hkm/front
 
+## 1.5.3
+
+### Patch Changes
+
+- 277227d: fix: skip task to be included in total count & switch score to be decimal rather than just integer
+
 ## 1.5.2
 
 ### Patch Changes
