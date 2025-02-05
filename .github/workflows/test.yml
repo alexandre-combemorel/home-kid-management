@@ -3,11 +3,16 @@ on:
   push:
     branches:
       - feat/auto-deploy
+# on:
+#   workflow_call:
+#     inputs:
+#       environment:
+#         required: true
+#         type: string
 jobs:
   release:
     name: Test scaleway cli
     runs-on: ubuntu-latest
-    environment: staging
     env:
       SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
       SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
@@ -24,3 +29,13 @@ jobs:
       - name: Test Scaleway CLI
         run: |
           scw container container update ${CONTAINER_ID} registry-image=${REGISTRY_IMAGE}
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Build for environment
+#         run: |
+#           echo "Building for ${{ inputs.environment }}"
+#           ./build.sh --env ${{ inputs.environment }}
