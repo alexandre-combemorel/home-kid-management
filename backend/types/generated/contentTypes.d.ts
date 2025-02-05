@@ -467,7 +467,7 @@ export interface ApiScoreScore extends Struct.CollectionTypeSchema {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
-    variation: Schema.Attribute.Integer;
+    variation: Schema.Attribute.Decimal;
   };
 }
 
