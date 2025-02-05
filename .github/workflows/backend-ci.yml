@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  deploy-staging:
+  build-push-staging:
     defaults:
       run:
         working-directory: ./backend
@@ -56,12 +56,16 @@ jobs:
           context: ./backend
           push: true
           tags: rg.fr-par.scw.cloud/home-kid-management/backend-staging:latest
-      - uses: ./.github/workflows/deploy-container.yml
-        with:
-          CONTAINER_ID: c9604ec2-a4c9-43ed-95c5-4bf220029531
-          REGISTRY_IMAGE: rg.fr-par.scw.cloud/home-kid-management/backend-staging:latest
 
-  deploy-production:
+  deploy-staging:
+    needs: build-push-staging
+    uses: ./.github/workflows/deploy-container.yml
+    with:
+      CONTAINER_ID: c9604ec2-a4c9-43ed-95c5-4bf220029531
+      REGISTRY_IMAGE: rg.fr-par.scw.cloud/home-kid-management/backend-staging:latest
+    secrets: inherit
+
+  build-push-production:
     defaults:
       run:
         working-directory: ./backend
@@ -113,7 +117,11 @@ jobs:
           tags: |
             rg.fr-par.scw.cloud/home-kid-management/backend-production:latest
             rg.fr-par.scw.cloud/home-kid-management/backend-production:${{ env.APP_VERSION }}
-      - uses: ./.github/workflows/deploy-container.yml
-        with:
-          CONTAINER_ID: 7fbe6229-8c75-40c2-adec-8b7c614e9625
-          REGISTRY_IMAGE: rg.fr-par.scw.cloud/home-kid-management/backend-production:latest
+
+  deploy-production:
+    needs: build-push-production
+    uses: ./.github/workflows/deploy-container.yml
+    with:
+      CONTAINER_ID: 7fbe6229-8c75-40c2-adec-8b7c614e9625
+      REGISTRY_IMAGE: rg.fr-par.scw.cloud/home-kid-management/backend-production:latest
+    secrets: inherit
