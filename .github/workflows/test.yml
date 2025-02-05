@@ -1,0 +1,12 @@
+name: Release
+on:
+  push:
+    branches:
+      - feat/auto-deploy
+jobs:
+  release:
+    name: Test scaleway cli
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install package Scw
+        run: apt install scaleway-cli
