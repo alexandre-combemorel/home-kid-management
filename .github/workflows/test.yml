@@ -7,6 +7,14 @@ jobs:
   release:
     name: Test scaleway cli
     runs-on: ubuntu-latest
+    env:
+      SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+      SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+      SCW_DEFAULT_ORGANIZATION_ID: fbb62ce1-1ee8-4d84-9730-02e89ce5958f
+      SCW_DEFAULT_PROJECT_ID: fbb62ce1-1ee8-4d84-9730-02e89ce5958f
     steps:
-      - name: Install package Scw
-        run: apt install scaleway-cli
+      - name: Install Scaleway CLI
+        run: |
+          curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh
+      - name: Test Scaleway CLI
+        run: scw container container list
