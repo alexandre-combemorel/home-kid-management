@@ -16,7 +16,7 @@
       "type": "json"
     },
     "variation": {
-      "type": "integer"
+      "type": "decimal"
     },
     "moment": {
       "type": "relation",
