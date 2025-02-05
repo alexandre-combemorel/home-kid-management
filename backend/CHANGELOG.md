@@ -1,5 +1,12 @@
 # @hkm/back
 
+## 0.3.2
+
+### Patch Changes
+
+- bd39241: deploy agains
+- a37423e: test deployement
+
 ## 0.3.1
 
 ### Patch Changes
