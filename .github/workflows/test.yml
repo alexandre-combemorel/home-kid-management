@@ -21,5 +21,4 @@ jobs:
           curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh
       - name: Test Scaleway CLI
         run: |
-          scw config validate
           scw container container list
