@@ -1,0 +1,28 @@
+name: Deploy Container
+on:
+  workflow_call:
+    inputs:
+      CONTAINER_ID:
+        required: true
+        type: string
+      REGISTRY_IMAGE:
+        required: true
+        type: string
+jobs:
+  deploy-container:
+    name: Deploy container with Scaleway cli
+    runs-on: ubuntu-latest
+    env:
+      SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+      SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+      SCW_DEFAULT_ORGANIZATION_ID: fbb62ce1-1ee8-4d84-9730-02e89ce5958f
+      SCW_DEFAULT_PROJECT_ID: fbb62ce1-1ee8-4d84-9730-02e89ce5958f
+      SCW_DEFAULT_REGION: fr-par
+      SCW_DEFAULT_ZONE: fr-par-1
+    steps:
+      - name: Install Scw cli
+        run: |
+          curl -s https://raw.githubusercontent.com/scaleway/scaleway-cli/master/scripts/get.sh | sh
+      - name: Deploy container
+        run: |
+          scw container container update ${{ inputs.CONTAINER_ID }} registry-image=${{ inputs.REGISTRY_IMAGE }}
