@@ -1,5 +1,11 @@
 # @hkm/front
 
+## 1.5.4
+
+### Patch Changes
+
+- 4e16544: Correct start week period which didnt include hours of day
+
 ## 1.5.3
 
 ### Patch Changes
