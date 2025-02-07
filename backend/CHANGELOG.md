@@ -1,5 +1,16 @@
 # @hkm/back
 
+## 0.4.0
+
+### Minor Changes
+
+- 4e16544: Restrict access to own user resources only
+
+### Patch Changes
+
+- bd39241: deploy agains
+- a37423e: test deployement
+
 ## 0.3.1
 
 ### Patch Changes
