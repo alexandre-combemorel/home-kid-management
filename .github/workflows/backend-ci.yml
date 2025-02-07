@@ -71,7 +71,7 @@ jobs:
         working-directory: ./backend
     if: startsWith(github.ref, 'refs/tags/@hkm')
     runs-on: ubuntu-latest
-    environment: staging
+    environment: production
     steps:
       - uses: actions/checkout@v4
       - name: Login to SCW
