@@ -1,5 +1,11 @@
 # @hkm/back
 
+## 0.4.2
+
+### Patch Changes
+
+- 76f357c: Assign score to user
+
 ## 0.4.1
 
 ### Patch Changes

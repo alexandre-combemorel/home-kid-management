@@ -1,5 +1,11 @@
 # @hkm/front
 
+## 1.5.5
+
+### Patch Changes
+
+- 49b5583: Make first load handling routing
+
 ## 1.5.4
 
 ### Patch Changes
