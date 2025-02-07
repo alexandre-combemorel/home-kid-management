@@ -19,4 +19,11 @@ export default factories.createCoreController("api::score.score", () => ({
     }
     return super.findOne(ctx)
   },
+  async create(ctx) {
+    ctx.request.body.data = {
+      ...ctx.request.body.data,
+      users_permissions_user: ctx.state.user.id,
+    }
+    return super.create(ctx)
+  },
 }))
