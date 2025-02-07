@@ -12,6 +12,6 @@ export type UserType = {
 }
 
 export type AuthContextType = {
-  user: UserType | undefined
+  user: UserType | undefined | null
   setUser: (user?: UserType) => void
 }
