@@ -27,7 +27,7 @@ jobs:
           restore-keys: |
             bun-${{ runner.os }}-
       - name: Set VITE_BACKEND_URL if it is production release
-        if: ${{ ! startsWith(github.ref, 'refs/tags/@hkm') }}
+        if: startsWith(github.ref, 'refs/tags/@hkm')
         run: echo "VITE_BACKEND_URL=https://backendhomekidmanage2go4qzln-container-kid-home-management.functions.fnc.fr-par.scw.cloud/" >> $GITHUB_ENV
       - name: build
         run: |
