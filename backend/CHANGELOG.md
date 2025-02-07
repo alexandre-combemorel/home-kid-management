@@ -1,5 +1,11 @@
 # @hkm/back
 
+## 0.4.1
+
+### Patch Changes
+
+- 89b8f30: Wrong backend ci
+
 ## 0.4.0
 
 ### Minor Changes
