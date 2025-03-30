@@ -28,6 +28,12 @@ const ButtonSkip = styled(Button)`
   top: 4px;
 `
 
+const SubmitButtonStyled = styled(Submit)`
+  font-size: ${({ theme }) => theme.typography.headingLargeStronger};
+  height: auto;
+  padding: ${({ theme }) => theme.space["2"]};
+`
+
 type FormType = {
   taskValidated: string[]
   taskSkipped: string[]
@@ -60,9 +66,10 @@ export const Task = () => {
 
   const onToggleActionsTask = useCallback(
     (taskId: string, validated: boolean) => {
+      const taskIdToValidate = `task_${taskId}`
       const taskValidatedNew = validated
-        ? [...taskValidated, `task_${taskId}`]
-        : taskValidated.filter((tid) => tid !== `task_${taskId}`)
+        ? [...taskValidated, taskIdToValidate]
+        : taskValidated.filter((tid) => tid !== taskIdToValidate)
 
       methods.setValue("taskValidated", taskValidatedNew)
     },
@@ -76,9 +83,14 @@ export const Task = () => {
 
   const onToggleSkipTask = useCallback(
     (taskId: string, isSkipping: boolean) => {
-      const taskSkippedNew = isSkipping
-        ? [...taskSkipped, `task_${taskId}`]
-        : taskSkipped.filter((tid) => tid !== `task_${taskId}`)
+      const taskIdToSkip = `task_${taskId}`
+      let taskSkippedNew;
+      if (isSkipping) {
+        taskSkippedNew = [...taskSkipped, taskIdToSkip]
+        methods.setValue("taskValidated", taskValidated.filter((tid) => tid !== taskIdToSkip))
+      } else {
+        taskSkippedNew = taskSkipped.filter((tid) => tid !== taskIdToSkip)
+      }
 
       methods.setValue("taskSkipped", taskSkippedNew)
     },
@@ -120,6 +132,13 @@ export const Task = () => {
     [areAllTaskValidated, momentId, taskSkipped],
   )
 
+  const SubmitButton = useMemo(() => {
+    return <SubmitButtonStyled disabled={!areAllTaskValidated}>
+      Terminer ({taskValidated.length + taskSkipped.length}/{listOfTaskFromMoment.length})
+      👍
+    </SubmitButtonStyled>
+  }, [areAllTaskValidated, taskValidated, taskSkipped, listOfTaskFromMoment])
+
   if (typeof score === "number") {
     return <Result score={score} />
   }
@@ -131,10 +150,7 @@ export const Task = () => {
       ) : (
         <Form methods={methods} errors={errors} onSubmit={onSubmit}>
           <Stack alignItems="center" gap={3}>
-            <Submit disabled={!areAllTaskValidated}>
-              Terminer ({taskValidated.length + taskSkipped.length}/{listOfTaskFromMoment.length})
-              👍
-            </Submit>
+            {SubmitButton}
             <Stack direction="row" gap={2} wrap alignItems="flex-start">
               {listOfTaskFromMoment.map((task) => {
                 const isCurrentTaskSkipped = isTaskSkipped(task.documentId)
@@ -154,12 +170,12 @@ export const Task = () => {
                     >
                       <ButtonSkip
                         variant="ghost"
-                        size="xsmall"
+                        size="small"
                         onClick={() => onToggleSkipTask(task.documentId, !isCurrentTaskSkipped)}
                       >
                         {isCurrentTaskSkipped ? "Unskip" : "Skip"}
                       </ButtonSkip>
-                      <Text as="p" variant="headingSmallStrong">
+                      <Text as="p" variant="headingLargeStrong" placement="center">
                         {task.title}
                       </Text>
                       <ImageTag src={task.img.url} />
@@ -180,6 +196,7 @@ export const Task = () => {
                 )
               })}
             </Stack>
+            {SubmitButton}
           </Stack>
         </Form>
       )}
