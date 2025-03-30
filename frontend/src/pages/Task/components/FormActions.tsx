@@ -1,4 +1,4 @@
-import { Button, Stack } from "@ultraviolet/ui"
+import { Button, Separator, Stack, Text } from "@ultraviolet/ui"
 import { CheckboxField } from "@ultraviolet/form"
 import styled from "@emotion/styled"
 import { EmojiTag } from "../../../components/EmojiTag"
@@ -25,14 +25,19 @@ export const FormActions = ({ onValidate, onUnvalidate, task, isValidated }: For
             <EmojiTag size="medium">✔️</EmojiTag>
           </StackStyled>
         ) : (
-          task.actions.map((action) => {
+          task.actions.map((action, index) => {
             return (
-              <CheckboxField
-                key={action.documentId}
-                name={`task_${task.documentId}-action_${action.documentId}`}
-              >
-                {action.title}
-              </CheckboxField>
+              <>
+                {index > 0 && <Separator />}
+                <CheckboxField
+                  key={action.documentId}
+                  name={`task_${task.documentId}-action_${action.documentId}`}
+                >
+                  <Text as="p" variant="headingSmall">
+                    {action.title}
+                  </Text>
+                </CheckboxField>
+              </>
             )
           })
         )}
