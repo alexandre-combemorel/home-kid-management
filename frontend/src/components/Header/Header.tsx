@@ -4,6 +4,7 @@ import { Button, Stack, SwitchButton, up } from "@ultraviolet/ui"
 import type { ThemeValue } from "../../providers/ThemeProvider/ThemeProvider"
 import { Menu } from "./Menu/Menu"
 import { Link } from "@tanstack/react-router"
+import { useAuth } from "../../providers/AuthProvider/AuthProvider"
 
 const HeaderContainer = styled.header`
   min-height: 60px;
@@ -37,6 +38,7 @@ const HeaderContainer = styled.header`
 
 export const Header = () => {
   const { theme, setTheme } = useTheme()
+  const { user } = useAuth()
 
   return (
     <HeaderContainer>
@@ -44,7 +46,7 @@ export const Header = () => {
       <Stack direction="row" gap={2}>
         <Link key={"profile"} to={"/profile"}>
           <Button variant="ghost" sentiment="neutral">
-            👤 Profile
+            👤 {user?.email.split("@")[0]}
           </Button>
         </Link>
         <SwitchButton
