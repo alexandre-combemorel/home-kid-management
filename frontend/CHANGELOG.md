@@ -1,5 +1,11 @@
 # @hkm/front
 
+## 1.6.0
+
+### Minor Changes
+
+- b87aee1: Improve text size display fix bug skip and validate, remove "debut" column in score
+
 ## 1.5.5
 
 ### Patch Changes
